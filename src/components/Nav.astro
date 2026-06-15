@@ -1,0 +1,90 @@
+---
+import NavLinks from './NavLinks.astro'
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 right-0 left-0 z-40 bg-transparent transition-colors duration-300"
+>
+  <div class="max-w-container mx-auto flex items-center gap-8 px-6 py-4">
+    <a href="/" class="text-text mr-auto text-base font-bold no-underline">Patricija Delač</a>
+
+    <nav aria-label="Main" class="hidden items-center gap-8 md:flex">
+      <ul role="list" class="m-0 flex list-none items-center gap-6 p-0">
+        <NavLinks />
+      </ul>
+    </nav>
+
+    <button
+      id="menu-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Menu"
+      class="group flex flex-col gap-1.5 p-2 md:hidden"
+    >
+      <span
+        class="bg-text block h-0.5 w-6 transition-transform group-aria-expanded:translate-y-2 group-aria-expanded:rotate-45"
+      ></span>
+      <span class="bg-text block h-0.5 w-6 transition-opacity group-aria-expanded:opacity-0"></span>
+      <span
+        class="bg-text block h-0.5 w-6 transition-transform group-aria-expanded:-translate-y-2 group-aria-expanded:-rotate-45"
+      ></span>
+    </button>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    aria-label="Main"
+    hidden
+    class="bg-surface border-border border-t px-6 py-4 md:hidden"
+  >
+    <ul role="list" class="m-0 flex list-none flex-col gap-4 p-0">
+      <NavLinks />
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')
+  const toggle = document.getElementById('menu-toggle')
+  const menu = document.getElementById('mobile-menu')
+
+  // scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header?.classList.remove('bg-transparent')
+      header?.classList.add('bg-surface', 'border-b', 'border-border')
+    } else {
+      header?.classList.remove('bg-surface', 'border-b', 'border-border')
+      header?.classList.add('bg-transparent')
+    }
+  })
+
+  // mobile menu toggle
+  toggle?.addEventListener('click', () => {
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true'
+    toggle.setAttribute('aria-expanded', String(!isExpanded))
+    if (isExpanded) {
+      menu?.setAttribute('hidden', '')
+    } else {
+      menu?.removeAttribute('hidden')
+    }
+  })
+
+  // close on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      toggle.setAttribute('aria-expanded', 'false')
+      menu?.setAttribute('hidden', '')
+      toggle.focus()
+    }
+  })
+
+  // close on outside click
+  document.addEventListener('click', (e) => {
+    if (toggle?.getAttribute('aria-expanded') === 'true' && !header?.contains(e.target as Node)) {
+      toggle.setAttribute('aria-expanded', 'false')
+      menu?.setAttribute('hidden', '')
+    }
+  })
+</script>
