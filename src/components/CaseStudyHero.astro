@@ -1,0 +1,46 @@
+---
+import Button from './Button.astro'
+
+interface Cta {
+  href: string
+  label: string
+}
+
+interface Props {
+  label: string
+  title: string
+  subtitle: string
+  primaryCta: Cta
+  secondaryCta: Cta
+}
+
+const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props
+---
+
+<div class="bg-surface-warm py-14 md:py-30">
+  <div class="container md:px-16">
+    <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+      <div>
+        <p class="section-eyebrow mb-3">{label}</p>
+
+        <h1 id="cs-title" class="hero-title mb-4 tracking-tight">
+          {title}
+        </h1>
+
+        <p class="hero-subtitle mb-7 max-w-xl">{subtitle}</p>
+
+        <div class="flex flex-wrap gap-4">
+          <Button href={primaryCta.href} label={primaryCta.label} external />
+          <Button
+            href={secondaryCta.href}
+            label={secondaryCta.label}
+            variant="secondary"
+            external
+          />
+        </div>
+      </div>
+
+      <slot />
+    </div>
+  </div>
+</div>

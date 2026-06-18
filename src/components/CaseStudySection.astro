@@ -1,0 +1,17 @@
+---
+interface Props {
+  id: string
+  eyebrow: string
+  title: string
+  class?: string
+  titleClass?: string
+}
+
+const { id, eyebrow, title, class: className, titleClass = 'mb-6' } = Astro.props
+---
+
+<section {id} aria-labelledby={`h-${id}`} class={className}>
+  <h2 id={`h-${id}`} class="section-eyebrow">{eyebrow}</h2>
+  <p class:list={['section-title', titleClass]}>{title}</p>
+  <slot />
+</section>

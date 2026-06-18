@@ -1,0 +1,32 @@
+---
+interface Stat {
+  value: string
+  label: string
+}
+
+interface Props {
+  stats: Stat[]
+}
+
+const { stats } = Astro.props
+---
+
+<section aria-label="Key metrics" class="mb-12">
+  <ul
+    class="border-border divide-border grid divide-x overflow-hidden rounded-2xl border bg-white"
+    style={`grid-template-columns: repeat(${stats.length}, 1fr)`}
+  >
+    {
+      stats.map(({ value, label }) => (
+        <li class="px-2 py-4 text-center md:px-6 md:py-10">
+          <p class="text-text-muted flex flex-col text-sm md:gap-1.5">
+            <span class="text-accent font-heading block text-2xl font-extrabold md:mb-1.5 md:text-5xl">
+              {value}
+            </span>
+            {label}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

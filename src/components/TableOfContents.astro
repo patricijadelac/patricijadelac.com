@@ -1,0 +1,69 @@
+---
+interface Link {
+  id: string
+  eyebrow: string
+  title: string
+}
+
+interface Props {
+  links: Link[]
+}
+
+const { links } = Astro.props
+---
+
+<nav aria-labelledby="toc-title" class="sticky top-24 hidden w-48 shrink-0 self-start lg:block">
+  <h2 id="toc-title" class="text-text-muted mb-3 text-xs font-semibold tracking-wider uppercase">
+    On this page
+  </h2>
+  <ul role="list" class="m-0 list-none space-y-0.5 p-0">
+    {
+      links.map(({ id, eyebrow }) => (
+        <li>
+          <a
+            href={`#${id}`}
+            class="aria-current:border-l-accent toc-link text-text-muted aria-current:text-accent hover:text-text block border-l-2 border-l-transparent py-1.5 pl-2 text-sm no-underline transition-colors aria-current:font-medium"
+          >
+            {eyebrow}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link')
+
+  type Section = { id: string; el: HTMLElement; link: HTMLAnchorElement }
+
+  const sections = Array.from(links)
+    .map((link) => {
+      const id = link.getAttribute('href')?.slice(1)
+      if (!id) return null
+      const el = document.getElementById(id)
+      return el ? ({ id, el, link } satisfies Section) : null
+    })
+    .filter((s): s is Section => s !== null)
+
+  function updateActive() {
+    const threshold = window.innerHeight * 0.35
+    let activeId = sections[0]?.id
+
+    for (const { id, el } of sections) {
+      if (el.getBoundingClientRect().top <= threshold) {
+        activeId = id
+      } else {
+        break
+      }
+    }
+
+    links.forEach((link) => {
+      const isCurrent = link.getAttribute('href') === `#${activeId}`
+      link.setAttribute('aria-current', isCurrent ? 'true' : 'false')
+    })
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true })
+  updateActive()
+</script>

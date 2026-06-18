@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components'
+import Button from './Button.astro'
 import { LINKEDIN_URL } from '../config'
 
 const currentPath = Astro.url.pathname
@@ -11,29 +11,22 @@ const navLinks = [
 ]
 ---
 
-{
-  navLinks.map((link) => (
-    <li>
-      <a
-        href={link.href}
-        aria-current={currentPath === link.href ? 'page' : undefined}
-        class="text-text hover:text-text-muted aria-[current=page]:text-accent text-sm no-underline transition-colors aria-[current=page]:font-semibold"
-      >
-        {link.label}
-      </a>
-    </li>
-  ))
-}
+<ul role="list" class="m-0 flex list-none items-center gap-6 p-0">
+  {
+    navLinks.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          aria-current={currentPath === link.href ? 'page' : undefined}
+          class="nav-link"
+        >
+          {link.label}
+        </a>
+      </li>
+    ))
+  }
 
-<li>
-  <a
-    href={LINKEDIN_URL}
-    class="bg-text inline-flex items-center gap-1 rounded-full px-5 py-2 text-sm font-semibold text-white no-underline transition-opacity hover:opacity-85"
-    target="_blank"
-    aria-label="LinkedIn (opens in new tab)"
-    rel="noopener noreferrer"
-  >
-    LinkedIn
-    <Icon name="lucide:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
-  </a>
-</li>
+  <li>
+    <Button href={LINKEDIN_URL} label="LinkedIn" external class="px-5! py-2!" />
+  </li>
+</ul>

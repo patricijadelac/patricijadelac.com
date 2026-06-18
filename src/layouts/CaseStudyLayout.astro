@@ -1,0 +1,55 @@
+---
+import Layout from './Layout.astro'
+
+interface MetaItem {
+  label: string
+  value: string
+}
+
+interface Props {
+  title: string
+  description?: string
+  meta: MetaItem[]
+}
+
+const { title, description, meta } = Astro.props
+---
+
+<Layout title={title} description={description}>
+  <article aria-labelledby="cs-title">
+    <slot name="hero" />
+
+    <div class="border-border border-b bg-white">
+      <dl class="container grid sm:grid-cols-2 md:grid-cols-4" aria-label="Project metadata">
+        {
+          meta.map((item, i) => {
+            const isLastInMobileRow = (i + 1) % 2 === 0
+            const isInFirstMobileRow = i < 2
+            const isLast = i === meta.length - 1
+            return (
+              <div
+                class:list={[
+                  'px-8 py-5',
+                  !isLastInMobileRow && 'border-border border-b sm:border-r sm:border-b-0',
+                  isInFirstMobileRow && 'border-border border-b sm:border-b-0',
+                  isLastInMobileRow && !isLast && 'md:border-border md:border-r',
+                ]}
+              >
+                <dt class="text-text-muted mb-1 text-xs font-semibold tracking-wider uppercase">
+                  {item.label}
+                </dt>
+                <dd class="text-sm font-bold">{item.value}</dd>
+              </div>
+            )
+          })
+        }
+      </dl>
+    </div>
+
+    <div class="container py-8">
+      <slot />
+    </div>
+
+    <slot name="full-width" />
+  </article>
+</Layout>

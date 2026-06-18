@@ -1,0 +1,28 @@
+---
+interface Item {
+  title: string
+  description: string
+}
+
+interface Props {
+  items: Item[]
+}
+
+const { items } = Astro.props
+---
+
+<div>
+  {
+    items.map((item, index) => (
+      <section class="border-b-surface-warm first:border-t-surface-warm grid gap-3 border-b-2 px-4 py-7 first:border-t-2 md:grid-cols-[1fr_auto] md:gap-6">
+        <p aria-hidden="true" class="font-heading text-accent text-3xl font-bold tracking-tight">
+          {String(index + 1).padStart(2, '0')}
+        </p>
+        <div>
+          <h3 class="font-heading mb-2 text-2xl font-bold">{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      </section>
+    ))
+  }
+</div>

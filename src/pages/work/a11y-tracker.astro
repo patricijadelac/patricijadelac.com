@@ -1,0 +1,269 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro'
+import CaseStudyHero from '../../components/CaseStudyHero.astro'
+import BrowserMockup from '../../components/BrowserMockup.astro'
+import CaseStudyStats from '../../components/CaseStudyStats.astro'
+import CaseStudySummary from '../../components/CaseStudySummary.astro'
+import CaseStudySection from '../../components/CaseStudySection.astro'
+import TableOfContents from '../../components/TableOfContents.astro'
+import HighlightList from '../../components/HighlightList.astro'
+import CaseStudyTextBlock from '../../components/CaseStudyTextBlock.astro'
+import CallToAction from '../../components/CallToAction.astro'
+import screenshot from '../../images/a11y-tracker.png'
+
+const solutionItems = [
+  {
+    title: 'Never describe the same issue twice',
+    description:
+      'A personal library of reusable issue templates. Each entry has a name, WCAG criterion, description, steps to reproduce, remediation suggestion, and severity. Select one and the form pre-fills. Add the affected URL and any project-specific context — nothing else required.',
+  },
+  {
+    title: '87 WCAG criteria, verified by hand',
+    description:
+      'Every criterion from WCAG 2.1 and 2.2 is built in — number, name, level (A/AA/AAA), version, Understanding doc URL, and affected disability types. The disability mappings were verified manually against the W3C Understanding documents, criterion by criterion. Not generated. Checked.',
+  },
+  {
+    title: 'A report the client can actually read',
+    description:
+      'At the end of an audit, A11y Tracker generates a full HTML report client-side — conformance verdict, severity breakdown, and a remediation roadmap. No exporting, no reformatting, no assembling findings from a spreadsheet into a separate document.',
+  },
+  {
+    title: 'One click into Jira',
+    description:
+      'Exports all issues as a CSV ready to import into Jira. No reformatting, no stripping out extra columns. Findings go straight into the development backlog where they get prioritised alongside everything else.',
+  },
+  {
+    title: 'The full audit, packaged for handoff',
+    description:
+      'Export any project as a ZIP — CSV, HTML report, and screenshots included. Import it back at any time to restore it in full.',
+  },
+]
+
+const learnedItems = [
+  {
+    title: 'Your own workflow pain is a valid product insight',
+    description:
+      'The predefined library came from a concrete, recurring frustration. That is how good tools get built — not from imagining what users might need, but from having lived the problem yourself.',
+  },
+  {
+    title: 'Domain expertise is the hard part, not the code',
+    description:
+      'Knowing which 87 WCAG criteria to include, understanding why TalkBack is Android-only while VoiceOver is Apple, knowing that Jira CSV export matters because that is how dev teams actually work — none of that came from the AI. It came from doing audits.',
+  },
+  {
+    title: 'Accessibility decisions need human verification',
+    description:
+      'The W3C Understanding documents exist for a reason — they are the authoritative source on who benefits from each criterion and why. Generated mappings look plausible. That is not the same as correct. No shortcut replaces reading the primary source.',
+  },
+  {
+    title: 'A tool you own can grow with you',
+    description:
+      'Using A11y Tracker on real audits immediately surfaced what was missing. Unlike a third-party tool, I could act on those gaps directly — adding features, adjusting workflows, improving the library. The tool gets better with every project. That feedback loop is only possible when you own what you build.',
+  },
+]
+
+const tocLinks = {
+  summary: { id: 'read-first', eyebrow: 'Summary', title: 'If you read nothing else' },
+  problem: { id: 'problem', eyebrow: 'Problem', title: 'Every audit started from scratch' },
+  solution: {
+    id: 'solution',
+    eyebrow: 'Solution',
+    title: 'A tool built around the way audits actually work',
+  },
+  decisions: { id: 'process', eyebrow: 'Process', title: 'The thinking behind each decision' },
+  learned: {
+    id: 'reflection',
+    eyebrow: 'What I learned',
+    title: 'Tools accelerate. Experience cannot be replaced.',
+  },
+  audit: {
+    id: 'audit',
+    eyebrow: 'Ongoing improvements',
+    title: 'Holding the tool to its own standard',
+  },
+}
+---
+
+<CaseStudyLayout
+  title="A11y Tracker — Patricija Delač"
+  description="A purpose-built accessibility audit tool with a predefined issue library and Jira CSV export. Built with React, Vite, and Supabase."
+  meta={[
+    { label: 'Role', value: 'Designer · Developer' },
+    { label: 'Type', value: 'Solo · Full stack' },
+    { label: 'Stack', value: 'React · Vite · Supabase' },
+    { label: 'Timeline', value: '2026' },
+  ]}
+>
+  <CaseStudyHero
+    slot="hero"
+    label="Case study · Accessibility tooling"
+    title="A11y Tracker"
+    subtitle="A purpose-built accessibility audit tool — a reusable issue library so you never start from scratch, and one-click Jira export so findings land in the dev backlog."
+    primaryCta={{ href: 'https://a11y-tracker.vercel.app', label: 'Try the demo' }}
+    secondaryCta={{
+      href: 'https://github.com/patricijadelac/a11y-tracker',
+      label: 'View on GitHub',
+    }}
+  >
+    <BrowserMockup url="a11y-tracker.app" src={screenshot} alt="A11y Tracker dashboard" />
+  </CaseStudyHero>
+
+  <CaseStudyStats
+    stats={[
+      { value: '87', label: 'WCAG criteria' },
+      { value: '15', label: 'issue templates' },
+      { value: 'CSV', label: 'Jira export' },
+    ]}
+  />
+
+  <div class="mb-8 flex items-start gap-12 md:mb-12 xl:gap-16">
+    <TableOfContents links={Object.values(tocLinks)} />
+
+    <div class="mx-auto max-w-170 min-w-0 flex-1 space-y-20 lg:mx-0">
+      <CaseStudySummary
+        id={tocLinks.summary.id}
+        eyebrow={tocLinks.summary.eyebrow}
+        title={tocLinks.summary.title}
+      >
+        <p class="leading-relaxed">
+          One client site. Over 80 accessibility issues on the homepage alone. I was logging
+          everything in a spreadsheet — no filtering, no shared templates, no way to generate a
+          report without building it manually. Every audit started from scratch. I built A11y
+          Tracker to fix that: a purpose-built audit tool with a predefined issue library and a Jira
+          export so findings land directly in the dev team's backlog.
+        </p>
+      </CaseStudySummary>
+
+      <CaseStudySection
+        id={tocLinks.problem.id}
+        eyebrow={tocLinks.problem.eyebrow}
+        title={tocLinks.problem.title}
+      >
+        <p class="mb-4 leading-relaxed">
+          Accessibility audits are repetitive by nature. The same issues appear on almost every
+          project — missing alt text, insufficient contrast, keyboard traps, unlabeled form fields.
+          But spreadsheets have no memory of any of it. Every audit started from scratch, with the
+          same issues described slightly differently each time.
+        </p>
+        <p class="mb-4 leading-relaxed">
+          The structural problems were bad enough. Columns too wide to read without horizontal
+          scrolling. No filtering by severity or criterion. Screenshots making rows uneven and the
+          file slow. Formatting that broke when a client opened it in a different version of Excel
+          or Google Sheets. No version history — overwrite something and it was gone.
+        </p>
+        <p class="mb-4 leading-relaxed">
+          The workflow problems were worse. When a familiar issue came up, I would search through
+          old files to find my previous wording, copy it, and fill in every field again. Generating
+          issue counts required manual formulas. Sharing with clients meant sending a raw file or
+          rebuilding it as a PDF. Importing into Jira required stripping out everything except the
+          issue rows — any context lived in a separate document that nobody read.
+        </p>
+        <p class="leading-relaxed">
+          The tipping point was a project with 80+ issues on a single page. By page three of the
+          audit, the spreadsheet had become unworkable.
+        </p>
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.solution.id}
+        eyebrow={tocLinks.solution.eyebrow}
+        title={tocLinks.solution.title}
+      >
+        <p class="mb-8 leading-relaxed">
+          The tool replaces the spreadsheet entirely. Every feature exists because a real audit
+          problem demanded it.
+        </p>
+        <HighlightList items={solutionItems} />
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.decisions.id}
+        eyebrow={tocLinks.decisions.eyebrow}
+        title={tocLinks.decisions.title}
+        titleClass="mb-8"
+      >
+        <div class="space-y-5">
+          <CaseStudyTextBlock heading="Why a predefined library — and why keep it private?">
+            <p>
+              After several audits the pattern was clear — the same issues, described slightly
+              differently every time. Standardising them into reusable templates solves three things
+              at once: consistent language across every report, faster logging, and a library that
+              compounds in value with every project. The full library is not in the public demo. It
+              represents accumulated auditing experience — which failures appear most often, how to
+              describe them precisely, what a good remediation looks like. That knowledge is the
+              product. The demo shows the workflow with a representative sample.
+            </p>
+          </CaseStudyTextBlock>
+          <CaseStudyTextBlock heading="Why Jira CSV export?">
+            <p>
+              Accessibility issues that live in a PDF or a spreadsheet are easy to deprioritise.
+              Issues that land in Jira get tracked alongside bugs and features — same process, same
+              visibility, same accountability. That is why the export exists. The export logic is
+              modular, so adding support for other tools is straightforward when the need arises.
+            </p>
+          </CaseStudyTextBlock>
+          <CaseStudyTextBlock heading="Why build it instead of using an existing tool?">
+            <p>
+              Our team had no shared system for accessibility audit reporting. Findings went into
+              Google Sheets or directly into Jira — inconsistent, time-consuming, and impossible to
+              scale as audits grew larger. When reports started taking as long as the audits
+              themselves, I started thinking about how to reduce that overhead and create a workflow
+              that worked for everyone. Building my own tool made more sense than adopting an
+              existing one — I wanted to own the feature set, keep the issue library under our
+              control, and design the workflow around how we actually audit, not how a third-party
+              tool assumed we would.
+            </p>
+          </CaseStudyTextBlock>
+          <CaseStudyTextBlock heading="Using AI to build it">
+            <p>
+              A11y Tracker was built with Claude Code from the first line — my first project built
+              with AI assistance end-to-end. The acceleration was real. But the domain decisions
+              came from me: what to track, how to structure the library, which criteria to include,
+              how to map disability types. The AI wrote the components. I decided what they needed
+              to do and why. That distinction matters in accessibility specifically. During
+              development I asked Claude to populate the WCAG criteria disability mappings. The
+              results looked plausible. Several were wrong — subtle errors that only became visible
+              when I went through all 87 criteria manually against the W3C Understanding documents.
+              Trusting AI on accessibility decisions without verification is not a good idea.
+              Building an accessibility tool taught me that firsthand.
+            </p>
+          </CaseStudyTextBlock>
+        </div>
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.learned.id}
+        eyebrow={tocLinks.learned.eyebrow}
+        title={tocLinks.learned.title}
+        titleClass="mb-8"
+      >
+        <HighlightList items={learnedItems} />
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.audit.id}
+        eyebrow={tocLinks.audit.eyebrow}
+        title={tocLinks.audit.title}
+      >
+        <p class="mb-4 leading-relaxed">
+          A11y Tracker is currently undergoing a WCAG 2.2 audit. Issues are being identified and
+          fixed as part of an ongoing refactor — because an accessibility tool should meet the same
+          standard it helps others achieve.
+        </p>
+      </CaseStudySection>
+    </div>
+  </div>
+
+  <CallToAction
+    slot="full-width"
+    eyebrow="See it in action"
+    heading="Try the live demo"
+    description="Create a project, log issues from the library, and export CSV to see the full workflow end to end."
+    cta={{ href: 'https://a11y-tracker.vercel.app', label: 'Open A11y Tracker', external: true }}
+    secondaryCta={{
+      href: 'https://github.com/patricijadelac/a11y-tracker',
+      label: 'View on GitHub',
+      external: true,
+    }}
+  />
+</CaseStudyLayout>

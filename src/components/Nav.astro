@@ -4,15 +4,13 @@ import NavLinks from './NavLinks.astro'
 
 <header
   id="site-header"
-  class="fixed top-0 right-0 left-0 z-40 bg-transparent transition-colors duration-300"
+  class="bg-background fixed top-0 right-0 left-0 z-40 transition-colors duration-300"
 >
-  <div class="max-w-container mx-auto flex items-center gap-8 px-6 py-4">
-    <a href="/" class="text-text mr-auto text-base font-bold no-underline">Patricija Delač</a>
+  <div class="container flex items-center gap-8 py-4 md:py-6">
+    <a href="/" class="mr-auto text-base font-bold no-underline">Patricija Delač</a>
 
     <nav aria-label="Main" class="hidden items-center gap-8 md:flex">
-      <ul role="list" class="m-0 flex list-none items-center gap-6 p-0">
-        <NavLinks />
-      </ul>
+      <NavLinks />
     </nav>
 
     <button

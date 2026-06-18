@@ -1,0 +1,13 @@
+---
+interface Props {
+  heading: string
+  headingClass?: string
+}
+
+const { heading, headingClass = '' } = Astro.props
+---
+
+<section>
+  <h3 class={`mb-4 font-bold ${headingClass}`}>{heading}</h3>
+  <slot />
+</section>
