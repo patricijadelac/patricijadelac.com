@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
+import { AUTHOR_NAME } from '../config'
 ---
 
-<Layout title="Patricija Delač — Accessibility Specialist">
+<Layout title={`${AUTHOR_NAME} — Accessibility Specialist`}>
   <Hero />
 </Layout>

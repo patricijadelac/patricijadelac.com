@@ -10,6 +10,7 @@ import HighlightList from '../../components/HighlightList.astro'
 import CaseStudyTextBlock from '../../components/CaseStudyTextBlock.astro'
 import CallToAction from '../../components/CallToAction.astro'
 import screenshot from '../../images/a11y-tracker.png'
+import { AUTHOR_NAME } from '../../config'
 
 const solutionItems = [
   {
@@ -85,7 +86,7 @@ const tocLinks = {
 ---
 
 <CaseStudyLayout
-  title="A11y Tracker — Patricija Delač"
+  title={`A11y Tracker — ${AUTHOR_NAME}`}
   description="A purpose-built accessibility audit tool with a predefined issue library and Jira CSV export. Built with React, Vite, and Supabase."
   meta={[
     { label: 'Role', value: 'Designer · Developer' },

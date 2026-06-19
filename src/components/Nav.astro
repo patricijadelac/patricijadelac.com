@@ -1,5 +1,6 @@
 ---
 import NavLinks from './NavLinks.astro'
+import { AUTHOR_NAME } from '../config'
 ---
 
 <header
@@ -7,7 +8,7 @@ import NavLinks from './NavLinks.astro'
   class="bg-background fixed top-0 right-0 left-0 z-40 transition-colors duration-300"
 >
   <div class="container flex items-center gap-8 py-4 md:py-6">
-    <a href="/" class="mr-auto text-base font-bold no-underline">Patricija Delač</a>
+    <a href="/" class="font-heading mr-auto text-base font-bold no-underline">{AUTHOR_NAME}</a>
 
     <nav aria-label="Main" class="hidden items-center gap-8 md:flex">
       <NavLinks />
