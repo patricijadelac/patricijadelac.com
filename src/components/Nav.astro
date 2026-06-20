@@ -3,10 +3,7 @@ import NavLinks from './NavLinks.astro'
 import { AUTHOR_NAME } from '../config'
 ---
 
-<header
-  id="site-header"
-  class="bg-background fixed top-0 right-0 left-0 z-40 transition-colors duration-300"
->
+<header id="site-header" class="bg-background fixed top-0 right-0 left-0 z-10 transition-colors">
   <div class="container flex items-center gap-8 py-4 md:py-6">
     <a href="/" class="font-heading mr-auto text-base font-bold no-underline">{AUTHOR_NAME}</a>
 
@@ -35,11 +32,9 @@ import { AUTHOR_NAME } from '../config'
     id="mobile-menu"
     aria-label="Main"
     hidden
-    class="bg-surface border-border border-t px-6 py-4 md:hidden"
+    class="bg-surface border-border border-t px-6 py-7 md:hidden md:py-4"
   >
-    <ul role="list" class="m-0 flex list-none flex-col gap-4 p-0">
-      <NavLinks />
-    </ul>
+    <NavLinks />
   </nav>
 </header>
 
@@ -51,11 +46,11 @@ import { AUTHOR_NAME } from '../config'
   // scroll effect
   window.addEventListener('scroll', () => {
     if (window.scrollY > 10) {
-      header?.classList.remove('bg-transparent')
-      header?.classList.add('bg-surface', 'border-b', 'border-border')
+      header?.classList.remove('bg-background')
+      header?.classList.add('bg-surface', 'shadow-xs')
     } else {
-      header?.classList.remove('bg-surface', 'border-b', 'border-border')
-      header?.classList.add('bg-transparent')
+      header?.classList.remove('bg-surface', 'shadow-xs')
+      header?.classList.add('bg-background')
     }
   })
 

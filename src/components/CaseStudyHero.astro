@@ -1,5 +1,5 @@
 ---
-import Button from './Button.astro'
+import LinkButton from './LinkButton.astro'
 
 interface Cta {
   href: string
@@ -30,8 +30,8 @@ const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props
         <p class="hero-subtitle mb-7 max-w-xl">{subtitle}</p>
 
         <div class="flex flex-wrap gap-4">
-          <Button href={primaryCta.href} label={primaryCta.label} external />
-          <Button
+          <LinkButton href={primaryCta.href} label={primaryCta.label} external />
+          <LinkButton
             href={secondaryCta.href}
             label={secondaryCta.label}
             variant="secondary"
