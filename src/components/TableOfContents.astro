@@ -13,9 +13,7 @@ const { links } = Astro.props
 ---
 
 <nav aria-labelledby="toc-title" class="sticky top-24 hidden w-48 shrink-0 self-start lg:block">
-  <h2 id="toc-title" class="text-text-muted mb-3 text-xs font-semibold tracking-wider uppercase">
-    On this page
-  </h2>
+  <h2 id="toc-title" class="eyebrow text-text-muted mb-3">On this page</h2>
   <ul role="list" class="m-0 list-none space-y-0.5 p-0">
     {
       links.map(({ id, eyebrow }) => (

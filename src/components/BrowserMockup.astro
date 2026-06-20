@@ -23,7 +23,7 @@ const { url, src, alt = 'Product screenshot' } = Astro.props
     <span class="h-2.75 w-2.75 rounded-full bg-[#e6b14c]"></span>
     <span class="h-2.75 w-2.75 rounded-full bg-[#69b85c]"></span>
     <div
-      class="ml-3.5 flex h-5 flex-1 items-center rounded-md border border-[#ddd8cc] bg-white px-2.5 text-[11px] text-[#9a9082]"
+      class="text-warm-gray ml-3.5 flex h-5 flex-1 items-center rounded-md border border-[#ddd8cc] bg-white px-2.5 text-[11px]"
     >
       {url}
     </div>
@@ -34,7 +34,7 @@ const { url, src, alt = 'Product screenshot' } = Astro.props
       <Image src={src} alt={alt} class="w-full" />
     ) : (
       <div
-        class="flex aspect-4/3 flex-col items-center justify-center gap-2 text-[#9a9082]"
+        class="text-warm-gray flex aspect-4/3 flex-col items-center justify-center gap-2"
         style="background: repeating-linear-gradient(45deg, rgb(244, 241, 234), rgb(244, 241, 234) 12px, rgb(239, 235, 226) 12px, rgb(239, 235, 226) 24px);"
       >
         <span class="text-[13px] font-bold tracking-widest uppercase">Product screenshot</span>

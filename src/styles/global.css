@@ -20,51 +20,81 @@
 }
 
 /* Base styles */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  @apply bg-background text-text font-body text-lg;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-heading;
-}
-
-[id] {
-  @apply scroll-mt-24;
-}
-
-:focus-visible {
-  @apply outline-accent outline-2 outline-offset-4;
-}
-
-a:not(.btn, .pill, .toc-link) {
-  text-decoration: none;
-  background: linear-gradient(currentColor, currentColor) no-repeat 0% 100% / 0% 1.5px;
-  transition:
-    color 0.2s ease,
-    background-size 0.25s ease;
-
-  &:is(:hover, :focus-visible) {
-    background-size: 100% 1.5px;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  body {
+    background-color: var(--color-background);
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    line-height: var(--leading-relaxed);
+  }
+
+  h1,
+  h2,
+  h3,
+  .h1,
+  .h2,
+  .h3 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+  }
+
+  h1,
+  .h1 {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-weight-black);
+
+    @media (width >= 48rem) {
+      font-size: var(--text-7xl);
+    }
+  }
+
+  h2,
+  .h2 {
+    font-size: var(--text-3xl);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  h3,
+  .h3 {
+    font-size: var(--text-2xl);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  a:not(.btn, .card-link, .pill, .skip-link, .toc-link) {
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) no-repeat 0% 100% / 0% 1.5px;
+    transition:
+      color 0.2s ease,
+      background-size 0.25s ease;
+
+    &:is(:hover, :focus-visible) {
+      background-size: 100% 1.5px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -78,42 +108,71 @@ a:not(.btn, .pill, .toc-link) {
 /* Components */
 @layer components {
   .skip-link {
-    @apply bg-accent absolute -top-full left-1/2 z-50 -translate-x-1/2 rounded-full px-5 py-2 text-sm font-semibold text-white no-underline transition-all;
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    padding: 0.5rem 1.25rem;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: white;
+    text-decoration: none;
+    background-color: var(--color-accent);
+    border-radius: 9999px;
+    transition: top 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .skip-link:focus {
-    @apply top-4;
+    top: 1rem;
   }
 
   .nav-link {
-    @apply text-text-muted aria-[current=page]:text-accent text-base no-underline aria-[current=page]:font-semibold;
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    text-decoration: none;
 
     &:is(:hover, :focus-visible) {
-      @apply text-text;
+      color: var(--color-text);
     }
 
     &[aria-current='page'] {
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-accent);
       background-size: 100% 1.5px;
     }
   }
 
   .hero-title {
-    @apply text-5xl leading-tight font-black tracking-tight md:text-7xl;
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tight);
+
+    @media (width >= 48rem) {
+      font-size: var(--text-7xl);
+    }
   }
 
   .hero-subtitle {
-    @apply text-xl leading-relaxed;
+    font-size: var(--text-xl);
   }
 
   .pill {
-    @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.375rem 1rem;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
   }
 
-  .section-eyebrow {
-    @apply text-accent font-body mb-2 text-xs font-semibold tracking-wider uppercase;
-  }
-
-  .section-title {
-    @apply font-heading text-3xl font-bold tracking-tight;
+  .eyebrow {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
   }
 }

@@ -126,7 +126,7 @@ const tocLinks = {
         eyebrow={tocLinks.summary.eyebrow}
         title={tocLinks.summary.title}
       >
-        <p class="leading-relaxed">
+        <p>
           One client site. Over 80 accessibility issues on the homepage alone. I was logging
           everything in a spreadsheet — no filtering, no shared templates, no way to generate a
           report without building it manually. Every audit started from scratch. I built A11y
@@ -140,29 +140,32 @@ const tocLinks = {
         eyebrow={tocLinks.problem.eyebrow}
         title={tocLinks.problem.title}
       >
-        <p class="mb-4 leading-relaxed">
-          Accessibility audits are repetitive by nature. The same issues appear on almost every
-          project — missing alt text, insufficient contrast, keyboard traps, unlabeled form fields.
-          But spreadsheets have no memory of any of it. Every audit started from scratch, with the
-          same issues described slightly differently each time.
-        </p>
-        <p class="mb-4 leading-relaxed">
-          The structural problems were bad enough. Columns too wide to read without horizontal
-          scrolling. No filtering by severity or criterion. Screenshots making rows uneven and the
-          file slow. Formatting that broke when a client opened it in a different version of Excel
-          or Google Sheets. No version history — overwrite something and it was gone.
-        </p>
-        <p class="mb-4 leading-relaxed">
-          The workflow problems were worse. When a familiar issue came up, I would search through
-          old files to find my previous wording, copy it, and fill in every field again. Generating
-          issue counts required manual formulas. Sharing with clients meant sending a raw file or
-          rebuilding it as a PDF. Importing into Jira required stripping out everything except the
-          issue rows — any context lived in a separate document that nobody read.
-        </p>
-        <p class="leading-relaxed">
-          The tipping point was a project with 80+ issues on a single page. By page three of the
-          audit, the spreadsheet had become unworkable.
-        </p>
+        <div class="space-y-4">
+          <p>
+            Accessibility audits are repetitive by nature. The same issues appear on almost every
+            project — missing alt text, insufficient contrast, keyboard traps, unlabeled form
+            fields. But spreadsheets have no memory of any of it. Every audit started from scratch,
+            with the same issues described slightly differently each time.
+          </p>
+          <p>
+            The structural problems were bad enough. Columns too wide to read without horizontal
+            scrolling. No filtering by severity or criterion. Screenshots making rows uneven and the
+            file slow. Formatting that broke when a client opened it in a different version of Excel
+            or Google Sheets. No version history — overwrite something and it was gone.
+          </p>
+          <p>
+            The workflow problems were worse. When a familiar issue came up, I would search through
+            old files to find my previous wording, copy it, and fill in every field again.
+            Generating issue counts required manual formulas. Sharing with clients meant sending a
+            raw file or rebuilding it as a PDF. Importing into Jira required stripping out
+            everything except the issue rows — any context lived in a separate document that nobody
+            read.
+          </p>
+          <p>
+            The tipping point was a project with 80+ issues on a single page. By page three of the
+            audit, the spreadsheet had become unworkable.
+          </p>
+        </div>
       </CaseStudySection>
 
       <CaseStudySection
@@ -170,7 +173,7 @@ const tocLinks = {
         eyebrow={tocLinks.solution.eyebrow}
         title={tocLinks.solution.title}
       >
-        <p class="mb-8 leading-relaxed">
+        <p class="mb-8">
           The tool replaces the spreadsheet entirely. Every feature exists because a real audit
           problem demanded it.
         </p>
@@ -246,7 +249,7 @@ const tocLinks = {
         eyebrow={tocLinks.audit.eyebrow}
         title={tocLinks.audit.title}
       >
-        <p class="mb-4 leading-relaxed">
+        <p>
           A11y Tracker is currently undergoing a WCAG 2.2 audit. Issues are being identified and
           fixed as part of an ongoing refactor — because an accessibility tool should meet the same
           standard it helps others achieve.

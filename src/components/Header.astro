@@ -3,7 +3,7 @@ import NavLinks from './NavLinks.astro'
 import { AUTHOR_NAME } from '../config'
 ---
 
-<header id="site-header" class="bg-background fixed top-0 right-0 left-0 z-10 transition-colors">
+<header id="site-header" class="bg-background fixed top-0 right-0 left-0 z-1 transition-colors">
   <div class="container flex items-center gap-8 py-4 md:py-6">
     <a href="/" class="font-heading mr-auto text-base font-bold no-underline">{AUTHOR_NAME}</a>
 
@@ -58,6 +58,7 @@ import { AUTHOR_NAME } from '../config'
   toggle?.addEventListener('click', () => {
     const isExpanded = toggle.getAttribute('aria-expanded') === 'true'
     toggle.setAttribute('aria-expanded', String(!isExpanded))
+
     if (isExpanded) {
       menu?.setAttribute('hidden', '')
     } else {
