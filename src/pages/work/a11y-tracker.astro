@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content'
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro'
 import CaseStudyHero from '../../components/CaseStudyHero.astro'
 import BrowserMockup from '../../components/BrowserMockup.astro'
@@ -9,8 +10,10 @@ import TableOfContents from '../../components/TableOfContents.astro'
 import HighlightList from '../../components/HighlightList.astro'
 import CaseStudyTextBlock from '../../components/CaseStudyTextBlock.astro'
 import CallToAction from '../../components/CallToAction.astro'
-import screenshot from '../../images/a11y-tracker.png'
 import { AUTHOR_NAME } from '../../config'
+
+const entry = await getEntry('work', 'a11y-tracker')
+if (!entry) throw new Error('Missing content entry: work/a11y-tracker')
 
 const solutionItems = [
   {
@@ -86,7 +89,7 @@ const tocLinks = {
 ---
 
 <CaseStudyLayout
-  title={`A11y Tracker — ${AUTHOR_NAME}`}
+  title={`${entry!.data.title} — ${AUTHOR_NAME}`}
   description="A purpose-built accessibility audit tool with a predefined issue library and Jira CSV export. Built with React, Vite, and Supabase."
   meta={[
     { label: 'Role', value: 'Designer · Developer' },
@@ -97,25 +100,20 @@ const tocLinks = {
 >
   <CaseStudyHero
     slot="hero"
-    label="Case study · Accessibility tooling"
-    title="A11y Tracker"
-    subtitle="A purpose-built accessibility audit tool — a reusable issue library so you never start from scratch, and one-click Jira export so findings land in the dev backlog."
-    primaryCta={{ href: 'https://a11y-tracker.vercel.app', label: 'Try the demo' }}
-    secondaryCta={{
-      href: 'https://github.com/patricijadelac/a11y-tracker',
-      label: 'View on GitHub',
-    }}
+    tags={['Case study', ...entry!.data.tags]}
+    title={entry!.data.title}
+    subtitle={entry!.data.subtitle}
+    primaryCta={{ href: entry!.data.links?.demo ?? '#', label: 'Try the demo' }}
+    secondaryCta={{ href: entry!.data.links?.repo ?? '#', label: 'View on GitHub' }}
   >
-    <BrowserMockup url="a11y-tracker.app" src={screenshot} alt="A11y Tracker dashboard" />
+    <BrowserMockup
+      url="a11y-tracker.app"
+      src={entry!.data.image?.src}
+      alt={entry!.data.image?.alt}
+    />
   </CaseStudyHero>
 
-  <CaseStudyStats
-    stats={[
-      { value: '87', label: 'WCAG criteria' },
-      { value: '15', label: 'issue templates' },
-      { value: 'CSV', label: 'Jira export' },
-    ]}
-  />
+  <CaseStudyStats stats={entry!.data.stats} />
 
   <div class="mb-8 flex items-start gap-12 md:mb-12 xl:gap-16">
     <TableOfContents links={Object.values(tocLinks)} />
@@ -263,11 +261,7 @@ const tocLinks = {
     eyebrow="See it in action"
     heading="Try the live demo"
     description="Create a project, log issues from the library, and export CSV to see the full workflow end to end."
-    cta={{ href: 'https://a11y-tracker.vercel.app', label: 'Open A11y Tracker', external: true }}
-    secondaryCta={{
-      href: 'https://github.com/patricijadelac/a11y-tracker',
-      label: 'View on GitHub',
-      external: true,
-    }}
+    cta={{ href: entry!.data.links?.demo ?? '#', label: 'Open A11y Tracker', external: true }}
+    secondaryCta={{ href: entry!.data.links?.repo ?? '#', label: 'View on GitHub', external: true }}
   />
 </CaseStudyLayout>

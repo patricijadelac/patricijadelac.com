@@ -7,21 +7,23 @@ interface Cta {
 }
 
 interface Props {
-  label: string
+  tags: string[]
   title: string
   subtitle: string
   primaryCta: Cta
   secondaryCta: Cta
 }
 
-const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props
+const { tags, title, subtitle, primaryCta, secondaryCta } = Astro.props
 ---
 
 <div class="bg-surface-warm py-14 md:py-30">
   <div class="container md:px-16">
     <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
       <div>
-        <p class="eyebrow mb-3">{label}</p>
+        <ul role="list" aria-label="Project categories" class="tag-list mb-3">
+          {tags.map((item) => <li class="eyebrow">{item}</li>)}
+        </ul>
 
         <h1 id="cs-title" class="hero-title mb-4">
           {title}

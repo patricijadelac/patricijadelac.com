@@ -1,0 +1,20 @@
+title: 'A11y Tracker'
+subtitle: 'A purpose-built accessibility audit tool — a reusable issue library so you never start from scratch, and one-click Jira export so findings land in the dev backlog.'
+description: 'A purpose-built accessibility audit tool with a reusable issue library and one-click Jira export.'
+featured: true
+image:
+  src: '../../images/a11y-tracker.png'
+  alt: 'A11y Tracker dashboard showing WCAG audit results'
+links:
+  demo: 'https://a11y-tracker.vercel.app'
+  repo: 'https://github.com/patricijadelac/a11y-tracker'
+tags:
+  - Accessibility
+  - Tooling
+stats:
+  - value: '87'
+    label: 'WCAG criteria'
+  - value: '15'
+    label: 'Issue templates'
+  - value: 'CSV'
+    label: 'Jira export'

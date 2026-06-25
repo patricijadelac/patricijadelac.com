@@ -74,6 +74,11 @@
     outline-offset: 4px;
   }
 
+  a,
+  button {
+    cursor: pointer;
+  }
+
   a:not(.btn, .card-link, .pill, .skip-link, .toc-link) {
     text-decoration: none;
     background: linear-gradient(currentColor, currentColor) no-repeat 0% 100% / 0% 1.5px;
@@ -174,5 +179,18 @@
     color: var(--color-accent);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tag-list li + li::before {
+    content: '·' / '';
+    margin-inline: 0.5rem;
   }
 }

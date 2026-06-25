@@ -1,9 +1,93 @@
 ---
+import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
+import Card from '../components/Card.astro'
 import { AUTHOR_NAME } from '../config'
+
+const allProjects = await getCollection('work')
+const projects = allProjects.filter((p) => p.data.featured)
+const tags = [...new Set(projects.flatMap((p) => p.data.tags))]
 ---
 
 <Layout title={`${AUTHOR_NAME} — Accessibility Specialist`}>
   <Hero />
+
+  <section id="work" aria-labelledby="selected-work-heading" class="container my-8 md:my-12">
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4 md:mb-8">
+      <h2 id="selected-work-heading" class="mb-0">
+        Selected <span class="text-accent">work</span>
+      </h2>
+      <div role="group" aria-label="Filter projects by tag" class="flex flex-wrap gap-2">
+        <button class="filter-btn" data-filter="all" aria-pressed="true"> All </button>
+
+        {
+          tags.map((tag) => (
+            <button class="filter-btn" data-filter={tag} aria-pressed="false">
+              {tag}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <ul class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3" id="work-list">
+      {
+        projects.map((project) => (
+          <li data-tags={project.data.tags.join(',')}>
+            <Card
+              title={project.data.title}
+              description={project.data.description}
+              href={`/work/${project.id}`}
+              tags={project.data.tags}
+              image={project.data.image}
+              headingLevel="h3"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>
+
+<style>
+  .filter-btn {
+    padding: 0.25rem 1rem;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    transition: all 150ms;
+    border: 1.5px solid var(--color-warm-gray);
+    border-radius: 16px;
+  }
+
+  .filter-btn:hover {
+    background-color: var(--color-surface-warm);
+  }
+
+  .filter-btn[aria-pressed='true'] {
+    color: var(--color-surface);
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn')
+  const items = document.querySelectorAll<HTMLElement>('#work-list [data-tags]')
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter
+      if (!filter) {
+        return
+      }
+
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button === btn)))
+
+      items.forEach((item) => {
+        const visible = filter === 'all' || item.dataset.tags?.split(',').includes(filter)
+        item.toggleAttribute('hidden', !visible)
+      })
+    })
+  })
+</script>
