@@ -18,17 +18,20 @@ const tags = [...new Set(projects.flatMap((p) => p.data.tags))]
       <h2 id="selected-work-heading" class="mb-0">
         Selected <span class="text-accent">work</span>
       </h2>
-      <div role="group" aria-label="Filter projects by tag" class="flex flex-wrap gap-2">
-        <button class="filter-btn" data-filter="all" aria-pressed="true"> All </button>
-
-        {
-          tags.map((tag) => (
-            <button class="filter-btn" data-filter={tag} aria-pressed="false">
-              {tag}
+      {
+        projects.length > 1 && tags.length > 1 && (
+          <div role="group" aria-label="Filter projects by tag" class="flex flex-wrap gap-2">
+            <button class="filter-btn" data-filter="all" aria-pressed="true">
+              All
             </button>
-          ))
-        }
-      </div>
+            {tags.map((tag) => (
+              <button class="filter-btn" data-filter={tag} aria-pressed="false">
+                {tag}
+              </button>
+            ))}
+          </div>
+        )
+      }
     </div>
 
     <ul class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3" id="work-list">
