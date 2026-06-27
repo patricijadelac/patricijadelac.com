@@ -5,37 +5,29 @@ import LinkButton from './LinkButton.astro'
 ---
 
 <div class="container">
-  <div class="grid grid-cols-1 items-center gap-12 py-8 md:grid-cols-[4fr_2fr] md:px-10 md:py-30">
-    <div>
-      <a
-        href="https://www.credly.com/badges/936c762c-4526-4e4d-9bcb-373acd127a48/public_url"
-        target="_blank"
-        aria-label="IAAP WAS certified, verify on Credly (opens in new tab)"
-        class="bg-accent/10 text-accent hover:bg-accent/20 pill mb-6 transition-colors"
-        rel="noopener noreferrer"
+  <div class="py-8 md:px-10 md:py-30 lg:max-w-240">
+    <div class="mb-4 flex flex-wrap items-center gap-2">
+      <h1 class="eyebrow md:text-base md:tracking-widest">
+        Patricija Delač · Web accessibility specialist
+      </h1>
+      <p
+        class="eyebrow bg-accent/10 flex items-center gap-2 rounded-2xl px-3 py-1 md:ml-2 md:text-base"
       >
-        <Icon name="lucide:badge-check" class="h-4 w-4" aria-hidden="true" />
+        <Icon name="lucide:graduation-cap" class="h-5 w-5" aria-hidden="true" />
         IAAP WAS certified
-        <Icon name="lucide:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
-      </a>
-
-      <h1 class="hero-title mb-6">Hey, I'm Patricija!</h1>
-
-      <p class="hero-subtitle mb-8 md:text-2xl">
-        I specialize in web accessibility and frontend development — with deep experience in WCAG,
-        assistive technology testing, and inclusive design.
       </p>
-
-      <div class="flex flex-wrap gap-4">
-        <LinkButton href="/work" label="View work" icon="lucide:arrow-right" />
-        <LinkButton href={LINKEDIN_URL} label="LinkedIn" variant="secondary" external />
-      </div>
     </div>
 
-    <div class="hidden items-center justify-center md:flex">
-      <div class="bg-border flex h-96 w-80 items-center justify-center rounded-2xl">
-        <Icon name="lucide:user" class="text-text-muted h-24 w-24 opacity-30" aria-hidden="true" />
-      </div>
+    <h2 class="hero-title mb-6">Accessible isn't a feature. It's whether it works.</h2>
+
+    <p class="hero-subtitle mb-8 md:max-w-160 md:text-2xl">
+      I help teams build accessible products through audits, hands-on development, and
+      knowledge-sharing.
+    </p>
+
+    <div class="flex flex-wrap gap-4">
+      <LinkButton href="/work" label="View work" icon="lucide:arrow-right" />
+      <LinkButton href={LINKEDIN_URL} label="LinkedIn" variant="secondary" external />
     </div>
   </div>
 </div>

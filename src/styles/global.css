@@ -45,7 +45,7 @@
 
   h1,
   .h1 {
-    font-size: var(--text-5xl);
+    font-size: var(--text-4xl);
     font-weight: var(--font-weight-black);
 
     @media (width >= 48rem) {
@@ -57,6 +57,10 @@
   .h2 {
     font-size: var(--text-3xl);
     letter-spacing: var(--tracking-tight);
+
+    @media (width >= 48rem) {
+      font-size: var(--text-4xl);
+    }
   }
 
   h3,
@@ -79,7 +83,7 @@
     cursor: pointer;
   }
 
-  a:not(.btn, .card-link, .pill, .skip-link, .toc-link) {
+  a:not(.btn, .card-link, .skip-link, .toc-link) {
     text-decoration: none;
     background: linear-gradient(currentColor, currentColor) no-repeat 0% 100% / 0% 1.5px;
     transition:
@@ -161,16 +165,6 @@
 
   .hero-subtitle {
     font-size: var(--text-xl);
-  }
-
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 9999px;
-    padding: 0.375rem 1rem;
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-medium);
   }
 
   .eyebrow {
