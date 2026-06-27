@@ -12,6 +12,7 @@ import { AUTHOR_NAME } from '../config'
     </nav>
 
     <button
+      type="button"
       id="menu-toggle"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -52,7 +53,7 @@ import { AUTHOR_NAME } from '../config'
       header?.classList.remove('bg-surface', 'shadow-xs')
       header?.classList.add('bg-background')
     }
-  })
+  }, { passive: true })
 
   // mobile menu toggle
   toggle?.addEventListener('click', () => {
