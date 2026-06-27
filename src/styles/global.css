@@ -78,6 +78,10 @@
     outline-offset: 4px;
   }
 
+  ::selection {
+    background: #d4bffd;
+  }
+
   a,
   button {
     cursor: pointer;
