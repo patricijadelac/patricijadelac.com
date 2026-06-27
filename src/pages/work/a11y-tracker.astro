@@ -47,22 +47,22 @@ const learnedItems = [
   {
     title: 'Your own workflow pain is a valid product insight',
     description:
-      'The predefined library came from a concrete, recurring frustration. That is how good tools get built — not from imagining what users might need, but from having lived the problem yourself.',
+      'The predefined library came from a concrete, recurring frustration. That frustration turned out to be a better design brief than any hypothetical user need.',
   },
   {
     title: 'Domain expertise is the hard part, not the code',
     description:
-      'Knowing which 87 WCAG criteria to include, understanding why TalkBack is Android-only while VoiceOver is Apple, knowing that Jira CSV export matters because that is how dev teams actually work — none of that came from the AI. It came from doing audits.',
+      'Knowing which 87 WCAG criteria to include, why TalkBack is Android-only while VoiceOver is Apple, why Jira CSV export matters because that is how dev teams actually work. None of that came from the AI. It came from doing audits.',
   },
   {
     title: 'Accessibility decisions need human verification',
     description:
-      'The W3C Understanding documents exist for a reason — they are the authoritative source on who benefits from each criterion and why. Generated mappings look plausible. That is not the same as correct. No shortcut replaces reading the primary source.',
+      'The W3C Understanding documents are the authoritative source on who benefits from each criterion and why. Generated mappings look plausible. Looking plausible is not the same as being correct, and reading the primary source is the only way to tell the difference.',
   },
   {
     title: 'A tool you own can grow with you',
     description:
-      'Using A11y Tracker on real audits immediately surfaced what was missing. Unlike a third-party tool, I could act on those gaps directly — adding features, adjusting workflows, improving the library. The tool gets better with every project. That feedback loop is only possible when you own what you build.',
+      'Using A11y Tracker on real audits immediately surfaced what was missing. Unlike a third-party tool, I could act on those gaps directly, adding features, adjusting workflows, improving the library. The tool gets better with every project because I can change it.',
   },
 ]
 
@@ -126,7 +126,7 @@ const tocLinks = {
       >
         <p>
           One client site. Over 80 accessibility issues on the homepage alone. I was logging
-          everything in a spreadsheet — no filtering, no shared templates, no way to generate a
+          everything in a spreadsheet: no filtering, no shared templates, no way to generate a
           report without building it manually. Every audit started from scratch. I built A11y
           Tracker to fix that: a purpose-built audit tool with a predefined issue library and a Jira
           export so findings land directly in the dev team's backlog.
@@ -141,27 +141,27 @@ const tocLinks = {
         <div class="space-y-4">
           <p>
             Accessibility audits are repetitive by nature. The same issues appear on almost every
-            project — missing alt text, insufficient contrast, keyboard traps, unlabeled form
-            fields. But spreadsheets have no memory of any of it. Every audit started from scratch,
-            with the same issues described slightly differently each time.
+            project: missing alt text, insufficient contrast, keyboard traps, unlabeled form fields.
+            But spreadsheets have no memory of any of it. Every audit started from scratch, with the
+            same issues described slightly differently each time.
           </p>
           <p>
             The structural problems were bad enough. Columns too wide to read without horizontal
             scrolling. No filtering by severity or criterion. Screenshots making rows uneven and the
             file slow. Formatting that broke when a client opened it in a different version of Excel
-            or Google Sheets. No version history — overwrite something and it was gone.
+            or Google Sheets. No version history. Overwrite something and it was gone.
           </p>
           <p>
             The workflow problems were worse. When a familiar issue came up, I would search through
             old files to find my previous wording, copy it, and fill in every field again.
             Generating issue counts required manual formulas. Sharing with clients meant sending a
             raw file or rebuilding it as a PDF. Importing into Jira required stripping out
-            everything except the issue rows — any context lived in a separate document that nobody
+            everything except the issue rows. Any context lived in a separate document that nobody
             read.
           </p>
           <p>
-            The tipping point was a project with 80+ issues on a single page. By page three of the
-            audit, the spreadsheet had become unworkable.
+            Things fell apart on a project with 80+ issues crammed onto one page. By page three of
+            the audit, the spreadsheet was useless.
           </p>
         </div>
       </CaseStudySection>
@@ -172,8 +172,7 @@ const tocLinks = {
         title={tocLinks.solution.title}
       >
         <p class="mb-8">
-          The tool replaces the spreadsheet entirely. Every feature exists because a real audit
-          problem demanded it.
+          The tool replaces the spreadsheet. Each feature came from a real audit problem.
         </p>
         <HighlightList items={solutionItems} />
       </CaseStudySection>
@@ -187,47 +186,50 @@ const tocLinks = {
         <div class="space-y-5">
           <CaseStudyTextBlock heading="Why a predefined library — and why keep it private?">
             <p>
-              After several audits the pattern was clear — the same issues, described slightly
-              differently every time. Standardising them into reusable templates solves three things
-              at once: consistent language across every report, faster logging, and a library that
-              compounds in value with every project. The full library is not in the public demo. It
-              represents accumulated auditing experience — which failures appear most often, how to
-              describe them precisely, what a good remediation looks like. That knowledge is the
-              product. The demo shows the workflow with a representative sample.
+              After several audits the pattern became clear: the same issues kept appearing,
+              described slightly differently each time. Turning them into reusable templates gives
+              every report consistent language, makes logging faster, and builds a library that gets
+              more useful with each project. The full library is not in the public demo. It holds
+              accumulated auditing experience: which failures come up most often, how to describe
+              them precisely, what good remediation looks like. The library is the product. The demo
+              shows the workflow with a representative sample.
             </p>
           </CaseStudyTextBlock>
           <CaseStudyTextBlock heading="Why Jira CSV export?">
             <p>
-              Accessibility issues that live in a PDF or a spreadsheet are easy to deprioritise.
-              Issues that land in Jira get tracked alongside bugs and features — same process, same
-              visibility, same accountability. That is why the export exists. The export logic is
-              modular, so adding support for other tools is straightforward when the need arises.
+              Accessibility issues in a PDF or spreadsheet are easy to deprioritise. Issues in Jira
+              get tracked alongside bugs and features, through the same process and with the same
+              accountability. That's why the export exists. The logic is modular, so adding support
+              for other tools is not a big lift if that becomes relevant.
             </p>
           </CaseStudyTextBlock>
           <CaseStudyTextBlock heading="Why build it instead of using an existing tool?">
             <p>
               Our team had no shared system for accessibility audit reporting. Findings went into
-              Google Sheets or directly into Jira — inconsistent, time-consuming, and impossible to
-              scale as audits grew larger. When reports started taking as long as the audits
-              themselves, I started thinking about how to reduce that overhead and create a workflow
-              that worked for everyone. Building my own tool made more sense than adopting an
-              existing one — I wanted to own the feature set, keep the issue library under our
-              control, and design the workflow around how we actually audit, not how a third-party
-              tool assumed we would.
+              Google Sheets or directly into Jira, which created inconsistency and got harder to
+              manage as audits grew. When reports started taking as long as the audits themselves, I
+              started thinking about how to cut that overhead and build something that fit how we
+              actually work. Building my own tool made more sense than adopting an existing one. I
+              wanted to own the feature set and keep the issue library under our control. I didn't
+              want a third-party tool deciding what our process should look like.
             </p>
           </CaseStudyTextBlock>
           <CaseStudyTextBlock heading="Using AI to build it">
             <p>
-              A11y Tracker was built with Claude Code from the first line — my first project built
-              with AI assistance end-to-end. The acceleration was real. But the domain decisions
+              A11y Tracker was built with Claude Code from the first line. My first project built
+              with AI assistance end-to-end. The acceleration was real. But every domain decision
               came from me: what to track, how to structure the library, which criteria to include,
               how to map disability types. The AI wrote the components. I decided what they needed
-              to do and why. That distinction matters in accessibility specifically. During
-              development I asked Claude to populate the WCAG criteria disability mappings. The
-              results looked plausible. Several were wrong — subtle errors that only became visible
-              when I went through all 87 criteria manually against the W3C Understanding documents.
-              Trusting AI on accessibility decisions without verification is not a good idea.
-              Building an accessibility tool taught me that firsthand.
+              to do and why.
+            </p>
+            <p>
+              That distinction matters more in accessibility than in most domains. At one point I
+              asked Claude to populate the WCAG criteria disability mappings. The results looked
+              plausible. Several were wrong. The errors were subtle enough that I only caught them
+              by going through all 87 criteria manually against the W3C Understanding documents.
+              Plausible-looking errors in accessibility work have real consequences for real people.
+              AI can accelerate the build. It cannot substitute for domain knowledge, and it cannot
+              be trusted to verify itself.
             </p>
           </CaseStudyTextBlock>
         </div>
@@ -249,7 +251,7 @@ const tocLinks = {
       >
         <p>
           A11y Tracker is currently undergoing a WCAG 2.2 audit. Issues are being identified and
-          fixed as part of an ongoing refactor — because an accessibility tool should meet the same
+          fixed as part of an ongoing refactor, because an accessibility tool should meet the same
           standard it helps others achieve.
         </p>
       </CaseStudySection>
@@ -260,7 +262,7 @@ const tocLinks = {
     slot="full-width"
     eyebrow="See it in action"
     heading="Try the live demo"
-    description="Create a project, log issues from the library, and export CSV to see the full workflow end to end."
+    description="Create a project, log some issues from the library, and export a CSV to try the full workflow."
     cta={{ href: entry!.data.links?.demo ?? '#', label: 'Open A11y Tracker', external: true }}
     secondaryCta={{ href: entry!.data.links?.repo ?? '#', label: 'View on GitHub', external: true }}
   />
