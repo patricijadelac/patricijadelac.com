@@ -177,6 +177,10 @@
     color: var(--color-accent);
     text-transform: uppercase;
     letter-spacing: var(--tracking-wider);
+
+    @media (width >= 48rem) {
+      font-size: var(--text-sm);
+    }
   }
 
   .tag-list {

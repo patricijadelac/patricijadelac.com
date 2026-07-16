@@ -45,15 +45,19 @@ import { AUTHOR_NAME } from '../config'
   const menu = document.getElementById('mobile-menu')
 
   // scroll effect
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      header?.classList.remove('bg-background')
-      header?.classList.add('bg-surface', 'shadow-xs')
-    } else {
-      header?.classList.remove('bg-surface', 'shadow-xs')
-      header?.classList.add('bg-background')
-    }
-  }, { passive: true })
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (window.scrollY > 10) {
+        header?.classList.remove('bg-background')
+        header?.classList.add('bg-surface', 'shadow-xs')
+      } else {
+        header?.classList.remove('bg-surface', 'shadow-xs')
+        header?.classList.add('bg-background')
+      }
+    },
+    { passive: true },
+  )
 
   // mobile menu toggle
   toggle?.addEventListener('click', () => {

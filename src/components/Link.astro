@@ -14,7 +14,7 @@ const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' 
 
 <a
   href={href}
-  class:list={[external && 'inline-flex items-center gap-1', className]}
+  class:list={[external && 'text-accent inline-flex items-center gap-1', className]}
   {...externalAttrs}
 >
   <slot />

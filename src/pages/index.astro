@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content'
 import Layout from '../layouts/Layout.astro'
 import Hero from '../components/Hero.astro'
 import Card from '../components/Card.astro'
-import { AUTHOR_NAME } from '../config'
+import { AUTHOR_NAME, CREDLY_IAAP_WAS } from '../config'
+import Link from '../components/Link.astro'
 
 const allProjects = await getCollection('work')
 const projects = allProjects.filter((p) => p.data.featured)
@@ -13,28 +14,34 @@ const tags = [...new Set(projects.flatMap((p) => p.data.tags))]
 <Layout title={`${AUTHOR_NAME} — Accessibility Specialist`}>
   <Hero />
 
-  <section id="work" aria-labelledby="selected-work-heading" class="container my-8 md:my-12">
-    <div class="mb-6 flex flex-wrap items-center justify-between gap-4 md:mb-8">
-      <h2 id="selected-work-heading" class="mb-0">
-        Selected <span class="text-accent">work</span>
-      </h2>
-      {
-        projects.length > 1 && tags.length > 1 && (
-          <div role="group" aria-label="Filter projects by tag" class="flex flex-wrap gap-2">
-            <button class="filter-btn" data-filter="all" aria-pressed="true">
-              All
-            </button>
-            {tags.map((tag) => (
-              <button class="filter-btn" data-filter={tag} aria-pressed="false">
-                {tag}
-              </button>
-            ))}
-          </div>
-        )
-      }
-    </div>
+  <section
+    id="work"
+    aria-labelledby="selected-work-heading"
+    class="container my-16 md:mt-12 md:mb-24 2xl:mt-25 2xl:mb-35"
+  >
+    <h2 id="selected-work-heading" class="eyebrow">Selected work</h2>
+    <p class="h2">Real projects. <span class="text-accent">Real findings.</span></p>
 
-    <ul class="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3" id="work-list">
+    {
+      projects.length > 1 && tags.length > 1 && (
+        <div
+          role="group"
+          aria-label="Filter projects by tag"
+          class="mt-2 mb-8 flex flex-wrap gap-2"
+        >
+          <button class="filter-btn" data-filter="all" aria-pressed="true">
+            All
+          </button>
+          {tags.map((tag) => (
+            <button class="filter-btn" data-filter={tag} aria-pressed="false">
+              {tag}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    <ul id="work-list" class="mt-4 grid gap-x-6 gap-y-8 md:grid-cols-2">
       {
         projects.map((project) => (
           <li data-tags={project.data.tags.join(',')}>
@@ -50,6 +57,56 @@ const tags = [...new Set(projects.flatMap((p) => p.data.tags))]
         ))
       }
     </ul>
+  </section>
+
+  <div class="bg-surface-warm py-18 md:py-28 2xl:py-35">
+    <section id="about" aria-labelledby="about-heading" class="container">
+      <h2 id="about-heading" class="eyebrow">About</h2>
+      <p class="h2 mb-4">
+        Accessibility isn't a checklist. <span class="text-accent">It's how I think.</span>
+      </p>
+      <div class="max-w-170 space-y-4">
+        <p>I'm Patricija, an accessibility specialist and frontend developer based in Slovenia.</p>
+        <p>
+          I came to accessibility through frontend development. The more I tested my own work with a
+          screen reader, the more I understood what was at stake. Nearly 1 in 3 people experience
+          some form of disability in their lifetime, and a poorly built interface can shut them out.
+        </p>
+        <p>
+          I'm IAAP WAS certified, audit to WCAG 2.2, and test with real assistive technology. My
+          frontend background means I don't stop at findings. I understand how to fix them and can
+          work directly with development teams to get there.
+        </p>
+        <p>
+          What I enjoy most is the people side of this work: explaining the why behind every issue,
+          sharing knowledge, and helping teams build accessibility into how they think, not just
+          what they check.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <section
+    id="certification"
+    aria-labelledby="certification-heading"
+    class="container my-16 md:my-24 2xl:my-35"
+  >
+    <h2 id="certification-heading" class="eyebrow">Certification</h2>
+    <p class="h2 mb-4">Certified, and verifiable</p>
+    <div class="flex flex-wrap items-center gap-4 rounded-2xl bg-white p-8 md:px-6 md:py-5">
+      <img
+        src="/IAAP-WAS-badge.svg"
+        alt="IAAP Web Accessibility Specialist (WAS)"
+        width="120"
+        height="120"
+        aria-hidden="true"
+      />
+      <div>
+        <h3>IAAP Web Accessibility Specialist (WAS)</h3>
+        <p>Certified by the International Association of Accessibility Professionals.</p>
+        <Link href={CREDLY_IAAP_WAS} external class="mt-2 inline-block">Verify on Credly</Link>
+      </div>
+    </div>
   </section>
 </Layout>
 
