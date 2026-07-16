@@ -1,0 +1,19 @@
+---
+import Layout from './Layout.astro'
+
+interface Props {
+  frontmatter: {
+    title: string
+    description?: string
+  }
+}
+
+const { frontmatter } = Astro.props
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <article class="markdown-content container py-14 md:py-20">
+    <h1>{frontmatter.title}</h1>
+    <slot />
+  </article>
+</Layout>
