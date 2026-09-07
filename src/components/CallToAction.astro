@@ -23,7 +23,13 @@ const { heading, description, cta, secondaryCta, eyebrow } = Astro.props
   <h2 class="mb-6 font-bold tracking-tighter text-white md:text-6xl">{heading}</h2>
   <p class="mx-auto mb-10 max-w-lg text-white/80">{description}</p>
   <div class="flex flex-wrap items-center justify-center gap-4">
-    <LinkButton href={cta.href} label={cta.label} external={cta.external} variant="white" />
+    <LinkButton
+      href={cta.href}
+      label={cta.label}
+      external={cta.external}
+      variant="white"
+      class="focus-visible:outline-white"
+    />
     {
       secondaryCta && (
         <LinkButton
@@ -31,6 +37,7 @@ const { heading, description, cta, secondaryCta, eyebrow } = Astro.props
           label={secondaryCta.label}
           external={secondaryCta.external}
           variant="ghost-white"
+          class="focus-visible:outline-white"
         />
       )
     }

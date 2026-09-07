@@ -20,7 +20,7 @@ const { links } = Astro.props
         <li>
           <a
             href={`#${id}`}
-            class="aria-current:border-l-accent toc-link text-text-muted aria-current:text-accent hover:text-text focus:text-text block border-l-2 border-l-transparent py-1.5 pl-2 text-sm no-underline transition-colors aria-current:font-medium"
+            class="toc-link text-text-muted hover:text-text focus:text-text [&.active]:border-l-accent [&.active]:text-accent block border-l-2 border-l-transparent py-1.5 pl-2 text-sm no-underline transition-colors [&.active]:font-medium"
           >
             {eyebrow}
           </a>
@@ -58,7 +58,7 @@ const { links } = Astro.props
 
     links.forEach((link) => {
       const isCurrent = link.getAttribute('href') === `#${activeId}`
-      link.setAttribute('aria-current', isCurrent ? 'true' : 'false')
+      link.classList.toggle('active', isCurrent)
     })
   }
 

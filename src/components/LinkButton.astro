@@ -21,11 +21,11 @@ const externalAttrs = external
   href={href}
   class:list={[
     'btn',
-    'inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-semibold no-underline transition-all hover:-translate-y-px hover:shadow-xl',
-    variant === 'primary' && 'bg-text text-white transition-opacity',
-    variant === 'secondary' && 'border-warm-gray border-2',
-    variant === 'white' && 'text-accent bg-white',
-    variant === 'ghost-white' && 'border-2 border-white/30 text-white hover:border-white/60',
+    'inline-flex items-center gap-2 rounded-full border-2 px-6 py-3 text-base font-semibold no-underline transition-all hover:-translate-y-px hover:shadow-xl',
+    variant === 'primary' && 'bg-text border-transparent text-white transition-opacity',
+    variant === 'secondary' && 'border-warm-gray',
+    variant === 'white' && 'text-accent border-transparent bg-white',
+    variant === 'ghost-white' && 'border-white/30 text-white hover:border-white/60',
     className,
   ]}
   {...externalAttrs}
