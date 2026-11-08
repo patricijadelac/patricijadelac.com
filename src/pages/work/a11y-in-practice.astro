@@ -1,0 +1,238 @@
+---
+import { getEntry } from 'astro:content'
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro'
+import CaseStudyHero from '../../components/CaseStudyHero.astro'
+import BrowserMockup from '../../components/BrowserMockup.astro'
+import CaseStudyStats from '../../components/CaseStudyStats.astro'
+import CaseStudySummary from '../../components/CaseStudySummary.astro'
+import CaseStudySection from '../../components/CaseStudySection.astro'
+import TableOfContents from '../../components/TableOfContents.astro'
+import HighlightList from '../../components/HighlightList.astro'
+import CaseStudyTextBlock from '../../components/CaseStudyTextBlock.astro'
+import CallToAction from '../../components/CallToAction.astro'
+import { AUTHOR_NAME } from '../../config'
+
+const entry = await getEntry('work', 'a11y-in-practice')
+if (!entry) throw new Error('Missing content entry: work/a11y-in-practice')
+
+const solutionItems = [
+  {
+    title: 'Design guidance before a line of code',
+    description:
+      'Each pattern spells out what a designer needs to get right first: focus order, visible states, contrast, and touch target size. Accessibility gets built into the design instead of patched in after development.',
+  },
+  {
+    title: 'Semantic HTML first, ARIA only when needed',
+    description:
+      'Every implementation favors native HTML behavior over ARIA-heavy markup. ARIA fills the gaps the platform does not cover on its own. It is not the default.',
+  },
+  {
+    title: 'A checklist for testers, not just a demo',
+    description:
+      'Each pattern comes with a testing checklist: how to check it with a keyboard and a screen reader, and which tools and browser extensions to run it through.',
+  },
+  {
+    title: 'Code meant to be copied',
+    description:
+      'Every example is a full implementation, not a fragment. Built to be copied into a real project and adapted, not reverse-engineered from a live demo.',
+  },
+]
+
+const learnedItems = [
+  {
+    title: 'Starting beats planning',
+    description:
+      'Picking one pattern and building it made more progress than trying to plan the whole library first. Everything after the first pattern got easier because there was finally something to build on.',
+  },
+  {
+    title: 'Researching each pattern builds the knowledge',
+    description:
+      'Working through an existing implementation, the WAI-ARIA APG, and testing tools for every pattern taught more than reading about accessibility in general ever did.',
+  },
+  {
+    title: 'This is a first version, not a finished one',
+    description:
+      'The patterns here work, but they are not the last word on any of them. Using them on real projects, testing them, and hearing from other designers, developers, and testers will decide what gets fixed or added next.',
+  },
+]
+
+const tocLinks = {
+  summary: { id: 'read-first', eyebrow: 'Summary', title: 'If you read nothing else' },
+  problem: {
+    id: 'problem',
+    eyebrow: 'Problem',
+    title: 'ARIA patterns exist. Guidance for building them rarely does.',
+  },
+  solution: {
+    id: 'solution',
+    eyebrow: 'Solution',
+    title: 'One pattern, three roles, everything each one needs',
+  },
+  decisions: { id: 'process', eyebrow: 'Process', title: 'The thinking behind each decision' },
+  learned: {
+    id: 'reflection',
+    eyebrow: 'What I learned',
+    title: 'Start with one pattern, not a finished library',
+  },
+  roadmap: {
+    id: 'roadmap',
+    eyebrow: "Where it's headed",
+    title: 'Three patterns live, more on the way',
+  },
+}
+---
+
+<CaseStudyLayout
+  title={`${entry!.data.title} — ${AUTHOR_NAME}`}
+  description="A library of accessible UI patterns for designers, developers, and testers, built with plain HTML, CSS, and JavaScript."
+  meta={[
+    { label: 'Role', value: 'Designer · Developer · Tester' },
+    { label: 'Type', value: 'Solo · No framework' },
+    { label: 'Stack', value: 'HTML · CSS · JavaScript' },
+    { label: 'Timeline', value: '2026' },
+  ]}
+>
+  <CaseStudyHero
+    slot="hero"
+    tags={['Case study', ...entry!.data.tags]}
+    title={entry!.data.title}
+    subtitle={entry!.data.subtitle}
+    primaryCta={{ href: entry!.data.links?.demo ?? '#', label: 'Try the demo' }}
+    secondaryCta={{ href: entry!.data.links?.repo ?? '#', label: 'View on GitHub' }}
+  >
+    <BrowserMockup
+      url="a11y-in-practice"
+      src={entry!.data.image?.src}
+      alt={entry!.data.image?.alt}
+    />
+  </CaseStudyHero>
+
+  <CaseStudyStats stats={entry!.data.stats} />
+
+  <div class="mb-8 flex items-start gap-12 md:mb-12 xl:gap-16">
+    <TableOfContents links={Object.values(tocLinks)} />
+
+    <div class="mx-auto max-w-170 min-w-0 flex-1 space-y-20 lg:mx-0">
+      <CaseStudySummary
+        id={tocLinks.summary.id}
+        eyebrow={tocLinks.summary.eyebrow}
+        title={tocLinks.summary.title}
+      >
+        <p>
+          ARIA patterns aren't the hard part. Seeing them built on real projects is where the gaps
+          show up: developers who copy an example and skip the parts that don't quite fit,
+          designers who never got guidance on what a pattern needs before it reaches development,
+          and testers with no checklist for what "accessible" means for that specific component.
+          A11y in Practice is a library of accessible UI patterns built for all three roles, not
+          just developers, with something to copy, read, or test at every step.
+        </p>
+      </CaseStudySummary>
+
+      <CaseStudySection
+        id={tocLinks.problem.id}
+        eyebrow={tocLinks.problem.eyebrow}
+        title={tocLinks.problem.title}
+      >
+        <div class="space-y-4">
+          <p>
+            Most ARIA pattern references assume one reader: a developer who already knows what
+            they're building. That assumption showed up on real projects. Implementations that
+            followed a pattern correctly on paper still missed details that made them awkward or
+            broken in practice, and there was nowhere for a designer or a tester to go for
+            guidance suited to their part of the work.
+          </p>
+          <p>
+            Designers got a wireframe with no accessibility requirements attached, so decisions
+            about focus order, visible states, and contrast got made, or skipped, without anyone
+            flagging them. Developers got a reference implementation with no explanation of the
+            reasoning behind it, so adapting it to a real component meant guessing which parts
+            mattered. Testers got the least of all: no checklist, no list of tools, no distinction
+            between what a scanner would catch and what needed a keyboard and a screen reader.
+          </p>
+          <p>
+            A11y in Practice exists to close that gap for all three roles at once. Not another
+            developer-only pattern library, but one built to teach accessibility along the way,
+            with something usable at every step.
+          </p>
+        </div>
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.solution.id}
+        eyebrow={tocLinks.solution.eyebrow}
+        title={tocLinks.solution.title}
+      >
+        <p class="mb-8">Each pattern is written for three roles, not one.</p>
+        <HighlightList items={solutionItems} />
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.decisions.id}
+        eyebrow={tocLinks.decisions.eyebrow}
+        title={tocLinks.decisions.title}
+        titleClass="mb-8"
+      >
+        <div class="space-y-5">
+          <CaseStudyTextBlock heading="Why not just another ARIA pattern library?">
+            <p>
+              The WAI-ARIA Authoring Practices Guide already documents these patterns correctly.
+              Repeating it was not the point. A11y in Practice exists to make that knowledge
+              usable by people who are not already accessibility specialists: a designer checking
+              their own file, a developer adapting an example to a real component, a tester
+              deciding what to click and what to run. Something to copy, not just something to
+              read.
+            </p>
+          </CaseStudyTextBlock>
+          <CaseStudyTextBlock heading="Writing every pattern three times">
+            <p>
+              Each pattern gets covered from three angles: design guidance, an implementation, and
+              a testing checklist with recommended tools. That is more work per pattern than a
+              typical reference, but it is the difference between a pattern being correct on its
+              own and being correct once a designer, a developer, and a tester have all touched it
+              before it ships.
+            </p>
+          </CaseStudyTextBlock>
+          <CaseStudyTextBlock heading="Starting with three patterns, not thirty">
+            <p>
+              Rather than drafting a long list of patterns and filling them in over time, the
+              project started with three: dialog, combobox, and pagination, each covered in full
+              for all three roles before moving to the next one. More patterns are being added the
+              same way.
+            </p>
+          </CaseStudyTextBlock>
+        </div>
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.learned.id}
+        eyebrow={tocLinks.learned.eyebrow}
+        title={tocLinks.learned.title}
+        titleClass="mb-8"
+      >
+        <HighlightList items={learnedItems} />
+      </CaseStudySection>
+
+      <CaseStudySection
+        id={tocLinks.roadmap.id}
+        eyebrow={tocLinks.roadmap.eyebrow}
+        title={tocLinks.roadmap.title}
+      >
+        <p>
+          Three patterns are live: dialog, combobox, and pagination. More are being added the same
+          way, one at a time, rather than drafted as a long list upfront. What gets built next
+          depends on using these patterns on real projects and on feedback from other designers,
+          developers, and testers who try them.
+        </p>
+      </CaseStudySection>
+    </div>
+  </div>
+
+  <CallToAction
+    slot="full-width"
+    eyebrow="Get involved"
+    heading="Try it, and tell me what's missing"
+    description="Browse the patterns, copy what's useful, and open an issue on GitHub if something is wrong or missing."
+    cta={{ href: entry!.data.links?.demo ?? '#', label: 'Try the demo', external: true }}
+    secondaryCta={{ href: entry!.data.links?.repo ?? '#', label: 'View on GitHub', external: true }}
+  />
+</CaseStudyLayout>

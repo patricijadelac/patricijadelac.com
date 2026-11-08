@@ -1,0 +1,20 @@
+title: 'A11y in Practice'
+subtitle: 'A library of accessible UI patterns built as full implementations, not toy demos: dialogs, comboboxes, pagination, and more, each shipped with designer notes, an implementation guide, and a test checklist against WCAG 2.2 AA.'
+description: 'A reference library of accessible UI patterns, each one a working implementation checked against WCAG 2.2 AA.'
+featured: true
+image:
+  src: '../../images/a11y-tracker.png'
+  alt: 'test'
+links:
+  demo: 'https://github.com/patricijadelac/a11y-in-practice'
+  repo: 'https://github.com/patricijadelac/a11y-in-practice'
+tags:
+  - Accessibility
+  - ARIA Patterns
+stats:
+  - value: '3'
+    label: 'Patterns documented'
+  - value: 'AA'
+    label: 'WCAG 2.2 level'
+  - value: 'HTML-first'
+    label: 'ARIA only when needed'
