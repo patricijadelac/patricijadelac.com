@@ -99,6 +99,7 @@
     &:focus-visible {
       color: white;
       background-color: var(--color-accent);
+      text-decoration: unset;
     }
   }
 
